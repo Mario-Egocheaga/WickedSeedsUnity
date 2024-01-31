@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae4e7437fd5df924eb2e3af25f72917f, type: 3}
+  m_Name: Coin Per Click 2
+  m_EditorClassIdentifier: 
+  upgradeAmount: 100
+  originalUpgradeCost: 2500
+  currentUpgradeCost: 2500
+  CostIncreaseMultiplierPerPurchase: 0.08
+  upgradeButtonText: 10 CPC
+  upgradeButtonDesc: 'Increase Your Coin Revenue Per Click (0)
+
+'
