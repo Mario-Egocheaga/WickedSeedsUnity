@@ -67,20 +67,20 @@ public class CoinManager : MonoBehaviour
     public void OnCoinClicked()
     {
         IncreaseCoin();
-        coinObj.transform.DOBlendableScaleBy(new Vector3(.05f, 0.05f, .05f), .05f).OnComplete(CoinScaleBack);
-        bgObj.transform.DOBlendableScaleBy(new Vector3(.05f, 0.05f, .05f), .05f).OnComplete(BackgroundScaleBack);
+        coinObj.transform.DOBlendableScaleBy(new Vector3(0.05f, 0.05f, 0.05f), 0.05f).OnComplete(CoinScaleBack);
+        bgObj.transform.DOBlendableScaleBy(new Vector3(0.05f, 0.05f, 00.05f), 0.05f).OnComplete(BackgroundScaleBack);
 
         PopupText.Create(1 + CoinPerClickUpgrade);
     }
 
     private void CoinScaleBack()
     {
-        coinObj.transform.DOBlendableScaleBy(new Vector3(-05f, -.05f, -.05f), .05f);
+        coinObj.transform.DOBlendableScaleBy(new Vector3(-0.05f, -0.05f, -0.05f), 0.05f);
     }
 
     private void BackgroundScaleBack()
     {
-        bgObj.transform.DOBlendableScaleBy(new Vector3(-05f, -.05f, -.05f), .05f);
+        bgObj.transform.DOBlendableScaleBy(new Vector3(-0.05f, -0.05f, -0.05f), 0.05f);
     }
 
     public void IncreaseCoin()
