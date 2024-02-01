@@ -91,14 +91,14 @@ public class CoinManager : MonoBehaviour
 
     public void onStoreButtonPress()
     {
-        MainGameCanvas.SetActive(true);
-        storeCanvas.SetActive(false);
+        MainGameCanvas.SetActive(false);
+        storeCanvas.SetActive(true);
     }
 
     public void onResumeButtonPress()
     {
-        MainGameCanvas.SetActive(false);
-        storeCanvas.SetActive(true);
+        MainGameCanvas.SetActive(true);
+        storeCanvas.SetActive(false);
     }
 
     public void SimpleCoinIncrease(double amount)
