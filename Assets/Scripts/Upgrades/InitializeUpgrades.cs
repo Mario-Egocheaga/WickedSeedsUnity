@@ -8,7 +8,7 @@ public class InitializeUpgrades : MonoBehaviour
     {
         for (int i = 0; i < upgrades.Length; i++)
         {
-            int currentIndex = 1;
+            int currentIndex = i;
             GameObject go = Instantiate(UIToSpawn, spawnParent);
 
             //reset cost

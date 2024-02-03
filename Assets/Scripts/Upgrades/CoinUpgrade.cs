@@ -8,7 +8,7 @@ public abstract class CoinUpgrade : ScriptableObject
 
     public double originalUpgradeCost = 100;
     public double currentUpgradeCost = 100;
-    public double CostIncreaseMultiplierPerPurchase = .05f;
+    public double CostIncreaseMultiplierPerPurchase = 0.05f;
 
     public string upgradeButtonText;
     [TextArea(3, 10)]
