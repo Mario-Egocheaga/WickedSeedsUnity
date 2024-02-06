@@ -16,5 +16,5 @@ MonoBehaviour:
   seedAmount: 1
   originalSeedCost: 1
   currentSeedCost: 1
-  costIncreaseMultiplierPerPurchase: 100
+  costIncreaseMultiplierPerPurchase: 1
   seedButtonDesc: This is Hatchling for your garden :)

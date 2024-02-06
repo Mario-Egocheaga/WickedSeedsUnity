@@ -17,9 +17,15 @@ public class GardenPlacement : MonoBehaviour
     public GameObject ui_Window;
     public Image[] items_images;
 
+    [Header("Sprites")]
+    public Sprite[] growth;
+
+    public int amountOfTimesTillPlant;
+
     public void PickUp(GameObject item)
     {
         items.Add(item);
+        item.transform.parent = this.transform;
         UpdateUI();
     }
 
@@ -45,12 +51,22 @@ public class GardenPlacement : MonoBehaviour
          if(items[id].GetComponent<Plant>().Type == Plant.PlantType.Planted)
          {
             items[id].GetComponent<Plant>().ConsumeEvent.Invoke();
-                //Destroy the item in very tiny time
-                Destroy(items[id], 0.1f);
-                //Clear the item from the list
-                items.RemoveAt(id);
-                //Update UI
-                UpdateUI();
+            //Destroy the item in very tiny time
+            //Destroy(items[id], 0.1f);
+            //Clear the item from the list
+            //items.RemoveAt(id);
+            amountOfTimesTillPlant++;
+            Debug.Log(amountOfTimesTillPlant);
+            Debug.Log("I'm being Clicked");
+            if (amountOfTimesTillPlant % 2 == 0)
+            {
+                for (int i = 0; i < growth.Length; i++)
+                {
+                    this.gameObject.transform.GetChild(id).GetComponent<Image>().sprite = growth[i];
+                }
+            }
+            //Update UI
+            UpdateUI();
          }
     }
 
@@ -71,11 +87,19 @@ public class GardenPlacement : MonoBehaviour
 
     public void Watering(int id)
     {
-        if (items[id].GetComponent<Plant>().Type == Plant.PlantType.Planted)
+
+        amountOfTimesTillPlant++;
+        Debug.Log(amountOfTimesTillPlant);
+        Debug.Log("I'm being Clicked");
+        if (amountOfTimesTillPlant % 2 == 0)
         {
-            items[id].GetComponent<Plant>().ConsumeEvent.Invoke();
-            //Update UI
-            UpdateUI();
+            for (int i = 0; i < growth.Length; i++)
+            {
+                gameObject.GetComponent<Image>().sprite = growth[i];
+            }
         }
+
+        this.gameObject.transform.GetChild(id).GetComponent<Plant>().Growing();
+        Debug.Log("Watering Funciton");
     }
 }

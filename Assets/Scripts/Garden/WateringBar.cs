@@ -16,14 +16,13 @@ public class WateringBar : MonoBehaviour
     {
         if (water <= 0)
         {
-            GardenPlacement.instance.FinishedPlanted(this.GetComponent<GardenSpot>().ID);
             return;
         }
 
         water -= value;
-        fillBar.value = water / 100;
+        fillBar.value = water ;
     }
-
+    
     public void Watering(float value)
     {
         if (water >= 100)
@@ -39,7 +38,7 @@ public class WateringBar : MonoBehaviour
     void FixedUpdate()
     {
         elapsed += Time.deltaTime;
-        if (elapsed >= fulltimer)
+        if (elapsed >= 5f)
         {
             elapsed = elapsed % 1f;
             WaterLose(waterValue);

@@ -163,6 +163,7 @@ public class CoinManager : MonoBehaviour
 
             GameObject seed = Instantiate(seedPrefab);
             gardenPlacement.PickUp(seed);
+            //seed.transform.parent = 
 
         }
     }
