@@ -10,25 +10,33 @@ public class CoinManager : MonoBehaviour
 
     public GameObject MainGameCanvas;
     [SerializeField] private GameObject storeCanvas;
+    public GameObject gardenCanvas;
     [SerializeField] private TextMeshProUGUI coinCounterText;
-    [SerializeField] private TextMeshProUGUI coinPerSecondText;
+    //[SerializeField] private TextMeshProUGUI coinPerSecondText;
     [SerializeField] private GameObject coinObj;
     public GameObject coinTextPopUp;
     [SerializeField] private GameObject bgObj;
 
     [Space]
     public CoinUpgrade[] coinUpgrades;
+    public SeedPayment[] seedPayment;
     [SerializeField] private GameObject storeUIToSpawn;
+    [SerializeField] private GameObject seedUIToSpawn;
     [SerializeField] private Transform storeUIToParent;
     public GameObject coinPerSecondOBJToSpawn;
 
+    public GameObject seedPrefab;
+
     public double CurrentCoinCount { get; set; }
-    public double CurrentCoinPerSeocnd { get; set; }
+    //public double CurrentCoinPerSeocnd { get; set; }
 
     public double CoinPerClickUpgrade { get; set; }
 
     private InitializeUpgrades intializeUpgrades;
+    private IntializeSeeds intializeSeeds;
     private CoinDisplay coinDisplay;
+
+    private GardenPlacement gardenPlacement;
 
     private void Awake()
     {
@@ -38,15 +46,20 @@ public class CoinManager : MonoBehaviour
         }
 
         coinDisplay = GetComponent<CoinDisplay>();
+        gardenPlacement = GetComponent<GardenPlacement>();
 
         UpdateCoinUI();
-        UpdateCoinPerSecondUI();
+        //UpdateCoinPerSecondUI();
 
+        gardenCanvas.SetActive(false);
         storeCanvas.SetActive(false);
         MainGameCanvas.SetActive(true);
 
         intializeUpgrades = GetComponent<InitializeUpgrades>();
         intializeUpgrades.Intialize(coinUpgrades, storeUIToSpawn, storeUIToParent);
+
+        intializeSeeds = GetComponent<IntializeSeeds>();
+        intializeSeeds.Intialize(seedPayment, seedUIToSpawn, storeUIToParent);
 
     }
 
@@ -58,11 +71,13 @@ public class CoinManager : MonoBehaviour
         coinDisplay.UpdateCoinText(CurrentCoinCount, coinCounterText);
     }
 
+    /*
     private void UpdateCoinPerSecondUI()
     {
         //coinPerSecondText.text = CurrentCoinPerSeocnd.ToString() + "P/S";
         coinDisplay.UpdateCoinText(CurrentCoinPerSeocnd, coinPerSecondText, " P/S");
     }
+    */
 
     public void OnCoinClicked()
     {
@@ -95,10 +110,17 @@ public class CoinManager : MonoBehaviour
         storeCanvas.SetActive(true);
     }
 
+    public void onGardenButtonPress()
+    {
+        MainGameCanvas.SetActive(false);
+        gardenCanvas.SetActive(true);
+    }
+
     public void onResumeButtonPress()
     {
         MainGameCanvas.SetActive(true);
         storeCanvas.SetActive(false);
+        gardenCanvas.SetActive(false);
     }
 
     public void SimpleCoinIncrease(double amount)
@@ -124,6 +146,24 @@ public class CoinManager : MonoBehaviour
             upgrade.currentUpgradeCost = Mathf.Round((float)(upgrade.currentUpgradeCost * (1 + upgrade.CostIncreaseMultiplierPerPurchase)));
 
             buttonRef.upgradeCostText.text = "Cost: " + upgrade.currentUpgradeCost;
+        }
+    }
+
+    public void OnSeedButtonClick(SeedPayment seedPayment, SeedUpdateReference buttonRef)
+    {
+        if (CurrentCoinCount >= seedPayment.currentSeedCost)
+        {
+            seedPayment.ApplySeed();
+            CurrentCoinCount -= seedPayment.currentSeedCost;
+            UpdateCoinUI();
+
+            seedPayment.currentSeedCost = Mathf.Round((float)(seedPayment.currentSeedCost * (1 + seedPayment.costIncreaseMultiplierPerPurchase)));
+            buttonRef.upgradeCostText.text = "Cost: " + seedPayment.currentSeedCost;
+
+
+            GameObject seed = Instantiate(seedPrefab);
+            gardenPlacement.PickUp(seed);
+
         }
     }
 }
