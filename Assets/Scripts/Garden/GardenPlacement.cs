@@ -58,7 +58,7 @@ public class GardenPlacement : MonoBehaviour
             amountOfTimesTillPlant++;
             Debug.Log(amountOfTimesTillPlant);
             Debug.Log("I'm being Clicked");
-            if (amountOfTimesTillPlant % 2 == 0)
+            if (amountOfTimesTillPlant % 5 == 0)
             {
                 for (int i = 0; i < growth.Length; i++)
                 {

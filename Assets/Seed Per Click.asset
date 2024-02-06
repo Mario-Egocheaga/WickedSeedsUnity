@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   seedPrefab: {fileID: 3422220817096276339, guid: 82b77f47f2d019541a4c48439e7eec91, type: 3}
   seedAmount: 1
-  originalSeedCost: 1
-  currentSeedCost: 1
-  costIncreaseMultiplierPerPurchase: 1
+  originalSeedCost: 50
+  currentSeedCost: 50
+  costIncreaseMultiplierPerPurchase: 0.5
   seedButtonDesc: This is Hatchling for your garden :)

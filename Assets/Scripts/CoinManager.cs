@@ -12,7 +12,7 @@ public class CoinManager : MonoBehaviour
     [SerializeField] private GameObject storeCanvas;
     public GameObject gardenCanvas;
     [SerializeField] private TextMeshProUGUI coinCounterText;
-    //[SerializeField] private TextMeshProUGUI coinPerSecondText;
+    [SerializeField] private TextMeshProUGUI coinPerSecondText;
     [SerializeField] private GameObject coinObj;
     public GameObject coinTextPopUp;
     [SerializeField] private GameObject bgObj;
@@ -28,7 +28,7 @@ public class CoinManager : MonoBehaviour
     public GameObject seedPrefab;
 
     public double CurrentCoinCount { get; set; }
-    //public double CurrentCoinPerSeocnd { get; set; }
+    public double CurrentCoinPerSeocnd { get; set; }
 
     public double CoinPerClickUpgrade { get; set; }
 
@@ -49,17 +49,17 @@ public class CoinManager : MonoBehaviour
         gardenPlacement = GetComponent<GardenPlacement>();
 
         UpdateCoinUI();
-        //UpdateCoinPerSecondUI();
+        UpdateCoinPerSecondUI();
 
         gardenCanvas.SetActive(false);
         storeCanvas.SetActive(false);
         MainGameCanvas.SetActive(true);
 
-        intializeUpgrades = GetComponent<InitializeUpgrades>();
-        intializeUpgrades.Intialize(coinUpgrades, storeUIToSpawn, storeUIToParent);
-
         intializeSeeds = GetComponent<IntializeSeeds>();
         intializeSeeds.Intialize(seedPayment, seedUIToSpawn, storeUIToParent);
+
+        intializeUpgrades = GetComponent<InitializeUpgrades>();
+        intializeUpgrades.Intialize(coinUpgrades, storeUIToSpawn, storeUIToParent);
 
     }
 
@@ -71,13 +71,13 @@ public class CoinManager : MonoBehaviour
         coinDisplay.UpdateCoinText(CurrentCoinCount, coinCounterText);
     }
 
-    /*
+    
     private void UpdateCoinPerSecondUI()
     {
         //coinPerSecondText.text = CurrentCoinPerSeocnd.ToString() + "P/S";
         coinDisplay.UpdateCoinText(CurrentCoinPerSeocnd, coinPerSecondText, " P/S");
     }
-    */
+    
 
     public void OnCoinClicked()
     {
